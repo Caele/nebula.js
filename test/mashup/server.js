@@ -23,6 +23,7 @@ module.exports = async () => {
   app.use('/apis', express.static(path.resolve(__dirname, '../../apis')));
   app.use('/fixtures', express.static(path.resolve(__dirname, '../fixtures')));
   app.use('/node_modules', express.static(path.resolve(__dirname, '../../node_modules')));
+  app.use('/examples', express.static(path.resolve(__dirname, '../../examples')));
 
   app.use(
     bodyParser.json({

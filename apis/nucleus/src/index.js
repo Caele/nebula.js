@@ -4,6 +4,7 @@ import appThemeFn from './app-theme';
 
 import bootNebulaApp from './components/NebulaApp';
 import AppSelectionsPortal from './components/selections/AppSelections';
+import ListBoxPortal from './components/listbox/ListBoxInline';
 
 import create from './object/create-session-object';
 import get from './object/get-object';
@@ -308,6 +309,24 @@ function nuked(configuration = {}) {
           };
         }
         return selectionsApi;
+      },
+      field: (fieldName) => {
+        return {
+          mount(element) {
+            this._instance = ListBoxPortal({
+              element,
+              app,
+              fieldName,
+            });
+            root.add(this._instance);
+          },
+          unmount() {
+            if (this._instance) {
+              root.remove(this._instance);
+              this._instance = null;
+            }
+          },
+        };
       },
       __DO_NOT_USE__: {
         types,
